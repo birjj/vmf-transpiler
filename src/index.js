@@ -1,6 +1,6 @@
-const tokenizer = require('./parsing/tokenizer');
-const parser = require('./parsing/parser');
-const transformer = require('./parsing/transformer');
+const tokenizer = require("./parsing/tokenizer");
+const parser = require("./parsing/parser");
+const transformer = require("./parsing/transformer");
 
 module.exports = {
     /**

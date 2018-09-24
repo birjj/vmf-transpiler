@@ -26,27 +26,27 @@ module.exports = function parser(tokens) {
     let current = 0;
 
     function walk() {
+        const node = {};
         let token = tokens[current];
 
         switch(token.type) {
             case "string":
                 // a string indicates that we have a simple property, as subsection names aren't quoted
-                const node = {
-                    type: "Property",
-                    name: token.value
-                };
+                node.type = "Property";
+                node.name = token.value;
+
                 token = tokens[++current];
                 node.value = token.value;
+
                 current++;
                 return node;
 
             case "name":
                 // a name indicates that we're starting a subsection
-                const node = {
-                    type: "Object",
-                    name: token.value,
-                    body: []
-                };
+                node.type = "Object";
+                node.name = token.value;
+                node.body = [];
+                
                 token = tokens[current += 2];
                 while (
                     (token.type !== "bracket") ||
