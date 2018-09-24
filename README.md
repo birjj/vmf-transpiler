@@ -10,17 +10,19 @@ Based on [leops/vmfparser](https://github.com/leops/vmfparser).
 The module exports an object with two methods:
 
 <dl>
-    <dt>`parse(input, [options])`</dt>
+    <dt><code>parse(input, [options])</code></dt>
     <dd>
-        Parses a VMF source into JSON. `input` is a VMF source string, and `options` is an optional object with the following options:
-        <dl>
-            <dt>`ast`</dt><dd>If true, return the Abstract Syntax Tree instead of the JSON representation.</dd>
-        </dl>
-    </dd>
-
-    <dt>`compile(input)`</dt>
+        Parses a VMF source into JSON. <code>input</code> is a VMF source string, and <code>options</code> is an optional object with the following options:
+        
+```JS
+{
+    "ast": false, // if true, return the Abstract Syntax Tree instead of the JSON representation
+}
+```
+</dd>
+    <dt><code>compile(input)</code></dt>
     <dd>
-        Compiles a JSON source into VMF. `input` is a JSON object as returned by `parse`.
+        Compiles a JSON source into VMF. <code>input</code> is a JSON object as returned by <code>parse</code>.
     </dd>
 </dl>
 
