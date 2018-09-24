@@ -1,3 +1,4 @@
+// @ts-check
 const tokenizer = require("./parsing/tokenizer");
 const parser = require("./parsing/parser");
 const transformer = require("./parsing/transformer");

@@ -1,3 +1,4 @@
+// @ts-check
 /** @typedef {import("./parser").AST} AST */
 /** @typedef {import("./parser").ObjectNode} ObjectNode */
 /** @typedef {import("./parser").PropertyNode} PropertyNode */

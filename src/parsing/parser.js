@@ -1,3 +1,4 @@
+// @ts-check
 /** @typedef {import("./tokenizer.js").Token} Token */
 /**
  * @typedef AST
@@ -25,28 +26,34 @@
 module.exports = function parser(tokens) {
     let current = 0;
 
+    /** @type {() => PropertyNode|ObjectNode} */
     function walk() {
-        const node = {};
         let token = tokens[current];
 
         switch(token.type) {
-            case "string":
+            case "string": {
                 // a string indicates that we have a simple property, as subsection names aren't quoted
-                node.type = "Property";
-                node.name = token.value;
-
+                /** @type {PropertyNode} */
+                const node = {
+                    type: "Property",
+                    name: token.value,
+                    value: null,
+                };
                 token = tokens[++current];
                 node.value = token.value;
-
                 current++;
                 return node;
+            }
 
-            case "name":
+            case "name": {
                 // a name indicates that we're starting a subsection
-                node.type = "Object";
-                node.name = token.value;
-                node.body = [];
-                
+                /** @type {ObjectNode} */
+                const node = {
+                    type: "Object",
+                    name: token.value,
+                    body: [],
+                };
+
                 token = tokens[current += 2];
                 while (
                     (token.type !== "bracket") ||
@@ -57,12 +64,14 @@ module.exports = function parser(tokens) {
                 }
                 current++;
                 return node;
+            }
 
             default:
                 throw new TypeError(`Unknown token type: ${token.type}`);
         }
     }
 
+    /** @type {AST} */
     var ast = {
         type: "File",
         body: []
