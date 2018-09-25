@@ -1,3 +1,4 @@
+// @ts-check
 const WHITESPACE = /\s/;
 const NAME = /[a-z0-9_]/i;
 
